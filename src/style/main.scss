@@ -1,0 +1,36 @@
+$primaryColor: #00cb79;
+$secondaryColor: #45b0e5;
+$mainGrey: #cfcfcf;
+$darkGrey:#444444;
+$font-primary: "Montserrat", sans-serif;
+
+.backgroundSkew {
+    width: 100vw;
+    height:700px;
+    background-color: $darkGrey;
+    transform: skewY(-10deg);
+    margin-top: -17rem;
+    padding-top: 17rem;
+    border-bottom:1rem solid $primaryColor;
+}
+
+.backgroundSkew > * {
+    transform: skewY(10deg);
+}
+
+.madlib-heading {
+    text-align: center;
+    margin: 20px;
+    padding-top: 46px;
+    color: white;
+    font-weight:700;
+    font-family: $font-primary;
+}
+
+.madlib-heading {
+    margin-bottom: 46px;
+    color:$mainGrey;
+    font-size: 15px;
+}
+
+
