@@ -5,31 +5,31 @@ import {
     Card
 } from 'reactstrap';
 import _ from 'lodash';
-
 import MadlibContent from './madlib_content';
 
 function MadlibInput(props) {
     return (
-            <Col md="3" className="input-wrapper">
+        <Col md="3" className="input-wrapper">
                 <Row>
-                    <Col md="2">
-                        <label className="color-label">{props.index}</label>
+                        <Col md="2">
+                            <label className="color-label">{props.index}</label>
                         </Col>
                         <Col md="10">
-                        <input placeholder={props.placeholder} value={props.state} type="text" onChange={props.onChange}/>
-                    </Col>
-                    </Row>
-                <Row>
-                    <Col md="2"></Col>
-                        <Col md="10">
-                    <div className="input-description">{props.placeholder}</div>
-                    </Col>
+                            <input placeholder={props.placeholder} value={props.state} type="text" onChange={props.onChange}/>
+                        </Col>
                 </Row>
-            </Col>
-       
+                    <Row>
+                        <Col md="2"></Col>
+                        <Col md="10">
+                            <div className="input-description">{props.placeholder}</div>
+                        </Col>
+                    </Row>
+        </Col>
         );
     }
-class Madlibform extends Component {
+
+
+class MadlibForm extends Component {
 
     constructor(props) {
         super(props)
@@ -44,20 +44,24 @@ class Madlibform extends Component {
             nounOne: '',
             numberOne: '',
             numberTwo: '',
-         }
-
+        }
     }
     
     handleChange = function(props) {
         return function(event) {
-            //console.log(`value for input ${props.inputTitle} is: ${event.target.value}`)
-            this.setState({[props.inputTitle]: event.target.value});
-           console.log(`value for state ${props.inputTitle} is: ${this.state[props.inputTitle]}`);
+        console.log(`value for input ${props.inputTitle} is: ${event.target.value}`)
+        this.setState({[props.inputTitle]: event.target.value});
+        console.log(`value for state ${props.inputTitle} is: ${this.state[props.inputTitle]}`)
         }.bind(this);
     }
 
-    handleClick = function() {
-        this.setState({
+    handleSubmit = function(event) {
+        this.setState({completedForm: true});
+        event.preventDefault();
+    }.bind(this);
+
+    handleClick = function () {
+           this.setState({
             completedForm: false,
             color: '',
             pluralNoun: '',
@@ -67,14 +71,8 @@ class Madlibform extends Component {
             nounOne: '',
             numberOne: '',
             numberTwo: '',
-
-    })
-}.bind(this);
-
-    handleSubmit = function(event) {
-        this.setState({completedForm: true});
-         event.preventDefault();
-    }.bind(this);
+        })
+    }.bind(this)
 
     renderButton = function() {
         if(this.state.completedForm) {
@@ -85,43 +83,52 @@ class Madlibform extends Component {
 
 render() {
 
-        this.inputData = [
-            {placeholder: 'Color', prop: 'color', state: this.state.color},
-            {placeholder: 'Noun (Plural)', prop: 'pluralNoun', state: this.state.pluralNooun},
-            {placeholder: 'Adjective', prop: 'adjectiveOne', state: this.state.adjectiveOne},
-            {placeholder: 'Celebrity', prop: 'celebrityOne', state: this.state.celebrityOne},
+    this.inputData = [
+        {placeholder: 'Color', prop: 'color', state: this.state.color},
+        {placeholder: 'Noun (Plural)', prop: 'pluralNoun', state: this.state.pluralNoun},
+        {placeholder: 'Adjective', prop: 'adjectiveOne', state: this.state.adjectiveOne},
+        {placeholder: 'Celebrity', prop: 'celebrityOne', state: this.state.celebrityOne},
 
-            {placeholder: 'Adjective', prop: 'adjectiveTwo', state: this.state.adjectiveTwo},
-            {placeholder: 'Noun', prop: 'nounOne', state: this.state.nounOne},
-            {placeholder: 'Number', prop: 'numberOne', state: this.state.numberOne},
-            {placeholder: 'Number', prop: 'numberTwo', state: this.state.numberTwo},
-    
-        ]
+        {placeholder: 'Adjective', prop: 'adjectiveTwo', state: this.state.adjectiveTwo},
+        {placeholder: 'Noun (Plural)', prop: 'nounOne', state: this.state.nounOne},
+        {placeholder: 'Number', prop: 'numberOne', state: this.state.numberOne},
+        {placeholder: 'Number', prop: 'numberTwo', state: this.state.numberTwo},
 
-      return (
+        {placeholder: 'Color', prop: 'color', state: this.state.color},
+        {placeholder: 'Noun (Plural)', prop: 'pluralNoun', state: this.state.pluralNoun},
+        {placeholder: 'Adjective', prop: 'adjectiveOne', state: this.state.adjectiveOne},
+        {placeholder: 'Celebrity', prop: 'celebrityOne', state: this.state.celebrityOne},
+
+        {placeholder: 'Adjective', prop: 'adjectiveTwo', state: this.state.adjectiveTwo},
+        {placeholder: 'Noun (Plural)', prop: 'nounOne', state: this.state.nounOne},
+        {placeholder: 'Number', prop: 'numberOne', state: this.state.numberOne},
+        {placeholder: 'Number', prop: 'numberTwo', state: this.state.numberTwo},
+       
+    ]
+
+    return (
         <div className="card-wrapper">
-        <Card>
-            <form onSubmit={this.handleSubmit} id="madlib_form">
-                <Row style={{textAlign: 'center', color: 'white'}}>
-                    {
-                        _.map(this.inputData, (data, indexKey) => {
-                            return <MadlibInput key={indexKey} index={indexKey + 1} state={data.state} placeholder={data.placeholder} onChange={this.handleChange({inputTitle: data.prop})} />
-                        })
-                    }
-                        
-                </Row>
-                    <Row>
-                        <Col md='12' className='button-wrapper'>
-                            {this.renderButton()}
-                        </Col>
-                    </Row>
-                 </form>
-                 <MadlibContent color={this.state}/>
-            </Card>
-          </div>
-          
-      );
-    }
-  }
+         <Card>
+             <form onSubmit={this.handleSubmit} id="madlib_form">
+                 <Row style={{textAlign: 'center', color: 'white'}}>
+                     {
+                         _.map(this.inputData, (data, indexKey) => {
+                             return <MadlibInput key={indexKey} index={indexKey + 1} state={data.state} placeholder={data.placeholder} onChange={this.handleChange({inputTitle: data.prop})} />
+                         })
+                     }
+                         
+                 </Row>
+                 <Row>
+                     <Col md="12" className="button-wrapper">
+                        {this.renderButton()}
+                     </Col>
+                 </Row>
+             </form>
+           <MadlibContent data={this.state}/>
+         </Card>
+       </div>
+     );
+ }
+}
 
-  export default Madlibform;
+export default MadlibForm;
