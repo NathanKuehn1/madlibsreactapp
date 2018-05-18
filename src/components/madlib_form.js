@@ -44,9 +44,15 @@ class MadlibForm extends Component {
             nounOne: '',
             numberOne: '',
             numberTwo: '',
+            adjectiveThree: '',
+            celebrityThree: '',
+            adjectiveFour: '',
+            nounThree: '',
+            celebrityFour: '',
+            adjectiveFive: ''
         }
     }
-    
+
     handleChange = function(props) {
         return function(event) {
         console.log(`value for input ${props.inputTitle} is: ${event.target.value}`)
@@ -71,7 +77,13 @@ class MadlibForm extends Component {
             nounOne: '',
             numberOne: '',
             numberTwo: '',
-        })
+            adjectiveThree: '',
+            celebrityThree: '',
+            adjectiveFour: '',
+            nounThree: '',
+            celebrityFour: '',
+            adjectiveFive: ''
+        });
     }.bind(this)
 
     renderButton = function() {
@@ -81,54 +93,54 @@ class MadlibForm extends Component {
         return <input type="submit" className="generate-button" value="Generate Mad Lib"/>
     }
 
-render() {
+    render() { 
 
-    this.inputData = [
-        {placeholder: 'Color', prop: 'color', state: this.state.color},
-        {placeholder: 'Noun (Plural)', prop: 'pluralNoun', state: this.state.pluralNoun},
-        {placeholder: 'Adjective', prop: 'adjectiveOne', state: this.state.adjectiveOne},
-        {placeholder: 'Celebrity', prop: 'celebrityOne', state: this.state.celebrityOne},
+        this.inputData = [
+            {placeholder: 'Color', prop: 'color', state: this.state.color},
+            {placeholder: 'Noun (Plural)', prop: 'pluralNoun', state: this.state.pluralNoun},
+            {placeholder: 'Adjective', prop: 'adjectiveOne', state: this.state.adjectiveOne},
+            {placeholder: 'Celebrity', prop: 'celebrityOne', state: this.state.celebrityOne},
 
-        {placeholder: 'Adjective', prop: 'adjectiveTwo', state: this.state.adjectiveTwo},
-        {placeholder: 'Noun (Plural)', prop: 'nounOne', state: this.state.nounOne},
-        {placeholder: 'Number', prop: 'numberOne', state: this.state.numberOne},
-        {placeholder: 'Number', prop: 'numberTwo', state: this.state.numberTwo},
+            {placeholder: 'Adjective', prop: 'adjectiveTwo', state: this.state.adjectiveTwo},
+            {placeholder: 'Noun (Plural)', prop: 'nounOne', state: this.state.nounOne},
+            {placeholder: 'Number', prop: 'numberOne', state: this.state.numberOne},
+            {placeholder: 'Number', prop: 'numberTwo', state: this.state.numberTwo},
 
-        {placeholder: 'Color', prop: 'color', state: this.state.color},
-        {placeholder: 'Noun (Plural)', prop: 'pluralNoun', state: this.state.pluralNoun},
-        {placeholder: 'Adjective', prop: 'adjectiveOne', state: this.state.adjectiveOne},
-        {placeholder: 'Celebrity', prop: 'celebrityOne', state: this.state.celebrityOne},
+            {placeholder: 'Noun', prop: 'nounTwo', state: this.state.color},
+            {placeholder: 'Adjective', prop: 'adjectiveThree', state: this.state.pluralNoun},
+            {placeholder: 'Celebrity', prop: 'celebrityTwo', state: this.state.adjectiveOne},
+            {placeholder: 'Celebrity', prop: 'celebrityThree', state: this.state.celebrityOne},
 
-        {placeholder: 'Adjective', prop: 'adjectiveTwo', state: this.state.adjectiveTwo},
-        {placeholder: 'Noun (Plural)', prop: 'nounOne', state: this.state.nounOne},
-        {placeholder: 'Number', prop: 'numberOne', state: this.state.numberOne},
-        {placeholder: 'Number', prop: 'numberTwo', state: this.state.numberTwo},
-       
-    ]
+            {placeholder: 'Adjective', prop: 'adjectiveFour', state: this.state.adjectiveTwo},
+            {placeholder: 'Noun', prop: 'nounThree', state: this.state.nounOne},
+            {placeholder: 'Celebrity', prop: 'celebrityFour', state: this.state.numberOne},
+            {placeholder: 'Adjective', prop: 'adjectiveFive', state: this.state.numberTwo},
+           
+        ]
 
-    return (
-        <div className="card-wrapper">
-         <Card>
-             <form onSubmit={this.handleSubmit} id="madlib_form">
-                 <Row style={{textAlign: 'center', color: 'white'}}>
-                     {
-                         _.map(this.inputData, (data, indexKey) => {
-                             return <MadlibInput key={indexKey} index={indexKey + 1} state={data.state} placeholder={data.placeholder} onChange={this.handleChange({inputTitle: data.prop})} />
-                         })
-                     }
-                         
-                 </Row>
-                 <Row>
-                     <Col md="12" className="button-wrapper">
-                        {this.renderButton()}
-                     </Col>
-                 </Row>
-             </form>
-           <MadlibContent data={this.state}/>
-         </Card>
-       </div>
-     );
- }
+        return (
+           <div className="card-wrapper">
+            <Card>
+                <form onSubmit={this.handleSubmit} id="madlib_form">
+                    <Row style={{textAlign: 'center', color: 'white'}}>
+                        {
+                            _.map(this.inputData, (data, indexKey) => {
+                                return <MadlibInput key={indexKey} index={indexKey + 1} state={data.state} placeholder={data.placeholder} onChange={this.handleChange({inputTitle: data.prop})} />
+                            })
+                        }
+                            
+                    </Row>
+                    <Row>
+                        <Col md="12" className="button-wrapper">
+                           {this.renderButton()}
+                        </Col>
+                    </Row>
+                </form>
+              <MadlibContent data={this.state}/>
+            </Card>
+          </div>
+        );
+    }
 }
 
 export default MadlibForm;

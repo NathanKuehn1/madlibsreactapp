@@ -3,15 +3,17 @@
 }
 
 .hideContent {
-visibility: hidden;
+    visibility: hidden;
 }
 
 .content-wrapper {
     background-color: $mainGrey;
     padding: 42px;
     margin-top: -22px;
-    
+    border-radius: 12px;
+
 }
+
 .black-label {
     background-color: black;
     border-radius: 100px;
@@ -21,4 +23,8 @@ visibility: hidden;
     text-align: center;
     color: white;
     margin: 5px;
+}
+
+.bold-text {
+    color: $secondaryColor;
 }
